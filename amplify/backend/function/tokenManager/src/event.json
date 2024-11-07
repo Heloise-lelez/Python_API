@@ -1,0 +1,6 @@
+{
+  "test": "event",
+  "body": {
+    "email": ""
+  }
+}

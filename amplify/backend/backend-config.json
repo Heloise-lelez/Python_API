@@ -1,0 +1,167 @@
+{
+  "api": {
+    "users": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userManager"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "tokenManager"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "pythonapiprojectutils": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    },
+    "tokenManager": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "userCreate"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "users"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userCreate": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "users"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userManager": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pythonapiprojectutils"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "users"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_pythonapiprojectutils_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pythonapiprojectutils"
+        }
+      ]
+    },
+    "AMPLIFY_function_pythonapiprojectutils_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pythonapiprojectutils"
+        }
+      ]
+    },
+    "AMPLIFY_function_tokenManager_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tokenManager"
+        }
+      ]
+    },
+    "AMPLIFY_function_tokenManager_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tokenManager"
+        }
+      ]
+    },
+    "AMPLIFY_function_userCreate_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userCreate"
+        }
+      ]
+    },
+    "AMPLIFY_function_userCreate_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userCreate"
+        }
+      ]
+    },
+    "AMPLIFY_function_userManager_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userManager"
+        }
+      ]
+    },
+    "AMPLIFY_function_userManager_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userManager"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "users": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "pythonapiprojectutils",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
+  "permissions": {
+    "storage": {
+      "users": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  }
+}

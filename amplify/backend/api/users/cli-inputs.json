@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/userManager": {
+      "name": "/userManager",
+      "lambdaFunction": "userManager",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/userEmail": {
+      "name": "/userEmail",
+      "lambdaFunction": "tokenManager",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
